@@ -1,0 +1,14 @@
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\bin\Debug\ConwayGameOfLife_wpf.exe.config
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\bin\Debug\ConwayGameOfLife_wpf.exe
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\bin\Debug\ConwayGameOfLife_wpf.pdb
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf.csprojResolveAssemblyReference.cache
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\MainWindow.g.cs
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\App.g.cs
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf_MarkupCompile.cache
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf_MarkupCompile.lref
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\MainWindow.baml
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf.g.resources
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf.Properties.Resources.resources
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf.csproj.GenerateResource.Cache
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf.exe
+C:\Users\Jericho Masigan\Documents\Programming\ConwayGameOfLife_wpf\ConwayGameOfLife_wpf\obj\Debug\ConwayGameOfLife_wpf.pdb

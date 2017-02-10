@@ -1,0 +1,39 @@
+﻿<Window x:Class="ConwayGameOfLife_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConwayGameOfLife_wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="400" ResizeMode="NoResize">
+    <Grid x:Name="baseGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="72*"/>
+            <RowDefinition Height="23*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="_pDish" Grid.Row="1" Grid.Column="1"/>
+        <GroupBox x:Name="groupBox" Grid.Column="1" Margin="0" Grid.Row="2" Header="Controls">
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="_gridSize" Margin="60,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" UndoLimit="95" Text="32"/>
+                <Label x:Name="label" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Height="30" Width="60" Content="Grid Size:"/>
+                <Button x:Name="_startButton" Content="Start" VerticalAlignment="Center" Margin="0,0,100,0" Grid.Row="1" HorizontalAlignment="Center" Width="50" Click="_startButton_Click"/>
+                <TextBox x:Name="_lifeGeneration" Margin="0,0,12,0" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" UndoLimit="95" Text="0.3"/>
+                <Label x:Name="label1" HorizontalAlignment="Right" Margin="0,0,60,0" VerticalAlignment="Center" Height="30" Width="70" Content="Probablity:"/>
+                <Button x:Name="_stopButton" Content="Stop" VerticalAlignment="Center" Margin="100,0,0,0" Grid.Row="1" HorizontalAlignment="Center" Width="50" Click="_stopButton_Click"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
