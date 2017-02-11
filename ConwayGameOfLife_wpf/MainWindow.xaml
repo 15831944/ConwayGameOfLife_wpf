@@ -19,11 +19,12 @@
         </Grid.RowDefinitions>
         <Grid x:Name="_pDish" Grid.Row="1" Grid.Column="1"/>
         <GroupBox x:Name="groupBox" Grid.Column="1" Margin="0" Grid.Row="2" Header="Controls">
-            <Grid Margin="20">
+            <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -33,6 +34,7 @@
                 <TextBox x:Name="_lifeGeneration" Margin="0,0,12,0" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" UndoLimit="95" Text="0.3"/>
                 <Label x:Name="label1" HorizontalAlignment="Right" Margin="0,0,60,0" VerticalAlignment="Center" Height="30" Width="70" Content="Probablity:"/>
                 <Button x:Name="_stopButton" Content="Stop" VerticalAlignment="Center" Margin="100,0,0,0" Grid.Row="1" HorizontalAlignment="Center" Width="50" Click="_stopButton_Click"/>
+                <Label x:Name="_generationLabel" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Height="30" Content="Generation:" Grid.Row="2"/>
             </Grid>
         </GroupBox>
     </Grid>

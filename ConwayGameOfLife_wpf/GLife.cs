@@ -54,7 +54,7 @@ namespace ConwayGameOfLife_wpf
                             break;
                         }
                     }
-                    CellState newState = SetState(dic, coord, currentState);
+                    CellState newState = SetState(dic, coord, currentState, gridSize);
                     newDic.Add(coord, newState);                   
                 }
             }
@@ -62,42 +62,38 @@ namespace ConwayGameOfLife_wpf
             return newDic;
         }
 
-        private static CellState SetState(Dictionary<Coordinates, CellState> dic, Coordinates currentCoordinates, CellState currentState)
+        private static CellState SetState(Dictionary<Coordinates, CellState> dic, Coordinates currentCoordinates, CellState currentState, int gridSize)
         {
-            if(currentState == CellState.NULL)
-            {
-                string haha;
-            }
-            int xD = 0, yD = 0; //direction of the cell to check
-            int x = currentCoordinates.X;
-            int y = currentCoordinates.Y;
+
             int neighbours = 0;
+            int j = 0;
             for(int i = 1; i <= 8; i++)
             {
+                int x = currentCoordinates.X;
+                int y = currentCoordinates.Y;
+                j++;
                 //check state clockwise starting from immediate left of cell
                 GetXnY(i, ref x, ref y);
-                //int newX = x - xD;
-                //int newY = y - yD;
-                CellState previousState = CellState.NULL;
+                CellState neighbourState = CellState.NULL;
                 Coordinates coord = new Coordinates(x, y);
-                if (coord.X > 0 && coord.Y > 0)
+                if (coord.X > -1 && coord.Y > -1 && coord.X < gridSize + 1 && coord.Y < gridSize + 1)
                 {
                     foreach (KeyValuePair<Coordinates, CellState> cell in dic)
                     {
                         Coordinates cellCoord = cell.Key;
                         if (cellCoord.X == coord.X && cellCoord.Y == coord.Y)
                         {
-                            previousState = cell.Value;
+                            neighbourState = cell.Value;
                             break;
                         }
-
                     }
                 }
-                if (previousState == CellState.ALIVE)
+                if (neighbourState == CellState.ALIVE)
                 {
                     neighbours++;
                 }
             }
+            int xii = j;
             if (currentState == CellState.DEAD && neighbours == 3)
             {
                 //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
@@ -108,10 +104,17 @@ namespace ConwayGameOfLife_wpf
                 //Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
                 return CellState.DEAD;
             }
-            else if(neighbours == 3 || neighbours == 2)
+            else if(neighbours == 3 || neighbours == 2 )
             {
                 //Any live cell with two or three live neighbours lives on to the next generation.
-                return CellState.ALIVE;
+                if (currentState == CellState.ALIVE)
+                {
+                    return CellState.ALIVE;
+                }
+                else
+                {
+                    return CellState.DEAD;
+                }
             }
             else
             {
@@ -135,6 +138,10 @@ namespace ConwayGameOfLife_wpf
                     }
                 case 2:
                     {
+                        if(x == 9)
+                        {
+                            string haha;
+                        }
                         x -= 1;
                         y -= 1;
                         break;

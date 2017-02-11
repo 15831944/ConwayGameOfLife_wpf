@@ -26,7 +26,8 @@ namespace ConwayGameOfLife_wpf
         DispatcherTimer timer;
         Dictionary<Coordinates, CellState> Cells;
         int sizeOfGrid;
-
+        int generation;
+        bool isGenerated;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace ConwayGameOfLife_wpf
             Dictionary<Coordinates, CellState> InitialCells = new Dictionary<Coordinates, CellState>();
             InitialCells = GLife.GenerateLife(16);
             PopulateGrid(InitialCells);
-
+            isGenerated = false;
         }
 
         private void PopulateGrid(Dictionary<Coordinates, CellState> dic)
@@ -68,7 +69,7 @@ namespace ConwayGameOfLife_wpf
         {
             _pDish.RowDefinitions.Clear();
             _pDish.ColumnDefinitions.Clear();
-            for(int i = 0; i <= gridSize; i++ )
+            for(int i = 1; i <= gridSize; i++ )
             {
                 ColumnDefinition col = new ColumnDefinition();
                 _pDish.ColumnDefinitions.Add(col);
@@ -80,7 +81,7 @@ namespace ConwayGameOfLife_wpf
         private void _startButton_Click(object sender, RoutedEventArgs e)
         {
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Interval = new TimeSpan(0, 0, 0 ,0, 300);
             timer.Tick += Timer_Tick; 
             int size = 0;
             int.TryParse(_gridSize.Text, out size);
@@ -95,16 +96,22 @@ namespace ConwayGameOfLife_wpf
                 CreateGrids(sizeOfGrid);
                 PopulateGrid(Cells);
                 timer.Start();
+                isGenerated = true;
             }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-
-            Cells = GLife.NextGen(sizeOfGrid, Cells);
-
-            ClearGrid();
-            PopulateGrid(Cells);
+            if (isGenerated)
+            {
+                isGenerated = false;
+                Cells = GLife.NextGen(sizeOfGrid, Cells);
+                generation++;
+                _generationLabel.Content = string.Format("GENERATION: {0}", generation.ToString());
+                ClearGrid();
+                PopulateGrid(Cells);
+                isGenerated = true;
+            }
         }
 
         private void _stopButton_Click(object sender, RoutedEventArgs e)
