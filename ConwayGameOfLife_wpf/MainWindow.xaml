@@ -18,6 +18,7 @@
             <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="_pDish" Grid.Row="1" Grid.Column="1"/>
+        <Image x:Name="_pDishImg" Grid.Column="1" Margin="0" Grid.Row="1" RenderOptions.BitmapScalingMode="NearestNeighbor"> </Image>
         <GroupBox x:Name="groupBox" Grid.Column="1" Margin="0" Grid.Row="2" Header="Controls">
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>

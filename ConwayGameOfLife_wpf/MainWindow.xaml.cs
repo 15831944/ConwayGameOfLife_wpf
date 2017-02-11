@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Drawing;
+using System.IO;
 
 namespace ConwayGameOfLife_wpf
 {
@@ -28,6 +30,8 @@ namespace ConwayGameOfLife_wpf
         int sizeOfGrid;
         int generation;
         bool isGenerated;
+        Bitmap gridBitmap;
+            
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +40,7 @@ namespace ConwayGameOfLife_wpf
             InitialCells = GLife.GenerateLife(16);
             PopulateGrid(InitialCells);
             isGenerated = false;
+            _pDishImg.SnapsToDevicePixels = true;
         }
 
         private void PopulateGrid(Dictionary<Coordinates, CellState> dic)
@@ -47,11 +52,11 @@ namespace ConwayGameOfLife_wpf
                 Grid block = new Grid();
                 if(state == CellState.ALIVE)
                 {
-                    block.Background = Brushes.Black;
+                    block.Background = System.Windows.Media.Brushes.Black;
                 }
                 else
                 {
-                    block.Background = Brushes.White;
+                    block.Background = System.Windows.Media.Brushes.White;
                 }
                 Grid.SetRow(block, coord.X);
                 Grid.SetColumn(block, coord.Y);
@@ -78,6 +83,48 @@ namespace ConwayGameOfLife_wpf
             }
         }
 
+        private void initBitmap()
+        {
+            gridBitmap = new Bitmap(sizeOfGrid, sizeOfGrid, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            for (int x = 0; x < gridBitmap.Width; x++)
+            {
+                for (int y = 0; y < gridBitmap.Height; y++)
+                {
+                    foreach (KeyValuePair<Coordinates, CellState> cell in Cells)
+                    {
+                        Coordinates cellCoord = cell.Key;
+                        CellState neighbourState = cell.Value;
+                        if (cellCoord.X == x && cellCoord.Y == y)
+                        {
+                            if (neighbourState == CellState.ALIVE)
+                            {
+                                gridBitmap.SetPixel(x, y, System.Drawing.Color.Black);
+                                break; //Save time. Next items are redundant
+                            }
+                            else
+                            {
+                                gridBitmap.SetPixel(x, y, System.Drawing.Color.White);
+                                break; //Save time. Next items are redundant
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public BitmapImage ConvertBitmap(Bitmap src)
+        {
+            System.IO.MemoryStream ms = new MemoryStream();
+            ((System.Drawing.Bitmap)src).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+            return image;
+        }
+
         private void _startButton_Click(object sender, RoutedEventArgs e)
         {
             timer = new DispatcherTimer();
@@ -92,9 +139,14 @@ namespace ConwayGameOfLife_wpf
                 sizeOfGrid = size;
                 Cells = new Dictionary<Coordinates, CellState>();
                 Cells = GLife.GenerateLife(sizeOfGrid, probablity);
+                initBitmap();
+                _pDishImg.Source = ConvertBitmap(gridBitmap);
+                /*
+                 * oldway
                 ClearGrid();
                 CreateGrids(sizeOfGrid);
                 PopulateGrid(Cells);
+                */
                 timer.Start();
                 isGenerated = true;
             }
@@ -108,8 +160,13 @@ namespace ConwayGameOfLife_wpf
                 Cells = GLife.NextGen(sizeOfGrid, Cells);
                 generation++;
                 _generationLabel.Content = string.Format("GENERATION: {0}", generation.ToString());
+                /*
                 ClearGrid();
                 PopulateGrid(Cells);
+                */
+                initBitmap();
+                _pDishImg.Source = ConvertBitmap(gridBitmap);
+                //gridBitmap.Save(@"C:\Users\Jericho Masigan\Documents\Test Environment\gameoflife\" + generation.ToString() + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
                 isGenerated = true;
             }
         }
